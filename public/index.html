@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAIRO | Universal Deobfuscator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="cyber-header">
+            <h1 class="glitch" data-text="KAIRO_DEOBF">KAIRO_DEOBF</h1>
+            <p class="subtitle">// UNIVERSAL LUA/LUAU DEOBFUSCATOR //</p>
+            <div class="header-stats">
+                <span class="stat">🔓 <span id="stat-deobf">0</span> Deobfuscated</span>
+                <span class="stat">⚡ <span id="stat-speed">0ms</span> Avg Speed</span>
+                <span class="stat">🎯 <span id="stat-accuracy">99%</span> Accuracy</span>
+            </div>
+        </header>
+
+        <main class="workspace">
+            <div class="editor-panel">
+                <div class="panel-header">
+                    <span class="status-dot"></span> 
+                    <span>INPUT_SOURCE</span>
+                    <button class="btn-upload" onclick="document.getElementById('file-upload').click()">
+                        📁 Upload .lua/.txt
+                    </button>
+                    <input type="file" id="file-upload" accept=".lua,.txt" style="display:none" onchange="handleFileUpload(event)">
+                </div>
+                <div id="editor-input" class="editor-box"></div>
+            </div>
+
+            <div class="controls">
+                <button id="btn-deobf" class="cyber-btn">
+                    <span class="btn-text">[ EXECUTE_DEOBF ]</span>
+                    <span class="btn-glitch"></span>
+                </button>
+                
+                <div class="options">
+                    <h3>⚙️ Pipeline Options</h3>
+                    <label class="option-item">
+                        <input type="checkbox" id="opt-strings" checked> 
+                        <span class="option-label">String Decrypt</span>
+                        <span class="option-desc">XOR, Base64, Hex, Char Tables</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" id="opt-cff" checked> 
+                        <span class="option-label">CFF Reconstruct</span>
+                        <span class="option-desc">Control Flow Flattening</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" id="opt-junk" checked> 
+                        <span class="option-label">Junk Removal</span>
+                        <span class="option-desc">Dead Code, Fake Math</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" id="opt-beautify" checked> 
+                        <span class="option-label">Beautify</span>
+                        <span class="option-desc">Rename Vars, Format</span>
+                    </label>
+                    <label class="option-item">
+                        <input type="checkbox" id="opt-multipass" checked> 
+                        <span class="option-label">Multi-Pass</span>
+                        <span class="option-desc">Run 3x for max results</span>
+                    </label>
+                </div>
+
+                <button id="btn-download" class="cyber-btn btn-download" disabled>
+                    <span class="btn-text">⬇ DOWNLOAD RESULT</span>
+                </button>
+            </div>
+
+            <div class="editor-panel">
+                <div class="panel-header">
+                    <span class="status-dot active"></span> 
+                    <span>OUTPUT_CLEAN</span>
+                    <button class="btn-copy" onclick="copyOutput()">📋 Copy</button>
+                </div>
+                <div id="editor-output" class="editor-box"></div>
+            </div>
+        </main>
+
+        <footer class="console-log">
+            <div class="log-header">
+                <span>> SYSTEM_LOG</span>
+                <button class="btn-clear" onclick="clearLogs()">Clear</button>
+            </div>
+            <div id="log-output" class="log-content">[READY] Waiting for input...</div>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
